@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import PlayerList from "./PlayerList"
+import usePinkMode from './hooks/usePinkMode';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     const [pinkMode, setPinkMode] = usePinkMode(false);
+     const toggleMode = e => {
+      e.preventDefault();
+      setPinkMode(!pinkMode);
+    };
+ 
+    return (
+      <div className="App">
+        
+<div className="pink-mode__toggle">
+       <input type="button"
+         onClick={toggleMode}
+         className={pinkMode ? 'toggle toggled' : 'toggle'}
+      /> Pink Mode
+  </div>
+      <PlayerList />
     </div>
-  );
+    );
+      
 }
 
+
 export default App;
+
+
